@@ -7,6 +7,8 @@ const oAuth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_REDIRECT_URI       // Get Redirect URI from environment variable
 );
 
+//https://thebirthdayreminderapp.netlify.app
+
 // Function to authorize and get calendar events
 async function getCalendarEvents() {
   try {
