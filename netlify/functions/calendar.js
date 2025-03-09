@@ -1,16 +1,19 @@
 const { google } = require("googleapis");
 
-const calendarId = process.env.GOOGLE_CALENDAR_ID;
+const calendarId = process.env.GOOGLE_CALENDAR_ID; // Get Calendar ID from environment variable
 const oAuth2Client = new google.auth.OAuth2(
-  process.env.GOOGLE_CLIENT_ID,
-  process.env.GOOGLE_CLIENT_SECRET,
-  process.env.GOOGLE_REDIRECT_URI
+  process.env.GOOGLE_CLIENT_ID,        // Get Client ID from environment variable
+  process.env.GOOGLE_CLIENT_SECRET,     // Get Client Secret from environment variable
+  process.env.GOOGLE_REDIRECT_URI       // Get Redirect URI from environment variable
 );
 
+//https://thebirthdayreminderapp.netlify.app
+
+// Function to authorize and get calendar events
 async function getCalendarEvents() {
   try {
     oAuth2Client.setCredentials({
-      refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
+      refresh_token: process.env.GOOGLE_REFRESH_TOKEN, // Get Refresh Token from environment variable
     });
 
     const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
@@ -38,6 +41,7 @@ async function getCalendarEvents() {
   }
 }
 
+// Netlify Function handler
 exports.handler = async function (event, context) {
   try {
     const events = await getCalendarEvents();
