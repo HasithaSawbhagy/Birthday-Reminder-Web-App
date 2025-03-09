@@ -7,27 +7,28 @@ const oAuth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_REDIRECT_URI       // Get Redirect URI from environment variable
 );
 
-//https://thebirthdayreminderapp.netlify.app
-
 // Function to authorize and get calendar events
-async function getCalendarEvents() {
+async function getCalendarEvents(year) {
   try {
     oAuth2Client.setCredentials({
       refresh_token: process.env.GOOGLE_REFRESH_TOKEN, // Get Refresh Token from environment variable
     });
 
     const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
+    const timeMin = new Date(`${year}-01-01T00:00:00Z`).toISOString();
+    const timeMax = new Date(`${year}-12-31T23:59:59Z`).toISOString();
+
     const response = await calendar.events.list({
       calendarId: calendarId,
-      timeMin: new Date().toISOString(),
-      maxResults: 10,
+      timeMin: timeMin,
+      timeMax: timeMax,
       singleEvents: true,
       orderBy: "startTime",
     });
 
     const events = response.data.items;
     if (!events || events.length === 0) {
-      console.log("No upcoming events found.");
+      console.log("No events found for the selected year.");
       return [];
     }
     return events.map((event) => ({
@@ -44,7 +45,8 @@ async function getCalendarEvents() {
 // Netlify Function handler
 exports.handler = async function (event, context) {
   try {
-    const events = await getCalendarEvents();
+    const { year } = event.queryStringParameters || {};
+    const events = await getCalendarEvents(year || new Date().getFullYear());
     return {
       statusCode: 200,
       body: JSON.stringify(events),

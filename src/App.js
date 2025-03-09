@@ -10,13 +10,14 @@ function App() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentYear, setCurrentYear] = useState(moment().year()); // Track the current year
 
   useEffect(() => {
     const fetchCalendarEvents = async () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await axios.get("/.netlify/functions/calendar");
+        const response = await axios.get(`/.netlify/functions/calendar?year=${currentYear}`);
         const formattedEvents = response.data.map((event) => ({
           title: event.summary,
           start: new Date(event.start),
@@ -33,7 +34,11 @@ function App() {
     };
 
     fetchCalendarEvents();
-  }, []);
+  }, [currentYear]); // Refetch events when the year changes
+
+  const handleYearChange = (newYear) => {
+    setCurrentYear(newYear);
+  };
 
   if (loading) {
     return <div>Loading calendar events...</div>;
@@ -45,14 +50,22 @@ function App() {
 
   return (
     <div style={{ height: "100vh", padding: "20px" }}>
-      <h1>My Calendar Events</h1>
+      <h1>My Calendar Events - {currentYear}</h1>
+      <div style={{ marginBottom: "20px" }}>
+        <button onClick={() => handleYearChange(currentYear - 1)}>Previous Year</button>
+        <button onClick={() => handleYearChange(currentYear + 1)} style={{ marginLeft: "10px" }}>
+          Next Year
+        </button>
+      </div>
       <Calendar
         localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
-        onSelectEvent={(event) => alert(`Event: ${event.title}`)}
+        onSelectEvent={(event) => alert(`Event: ${event.title}\nStart: ${event.start}\nEnd: ${event.end}`)}
         style={{ height: "80vh" }}
+        defaultView="year"
+        views={["month", "agenda"]}
       />
     </div>
   );
