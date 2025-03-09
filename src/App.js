@@ -42,6 +42,31 @@ function App() {
     setCurrentYear(newYear);
   };
 
+  const renderMonthCalendar = (month) => {
+    const startOfMonth = moment().year(currentYear).month(month).startOf("month");
+    const endOfMonth = moment().year(currentYear).month(month).endOf("month");
+
+    const monthEvents = events.filter((event) =>
+      moment(event.start).isBetween(startOfMonth, endOfMonth, null, "[]")
+    );
+
+    return (
+      <div key={month} style={{ marginBottom: "20px" }}>
+        <h3>{startOfMonth.format("MMMM YYYY")}</h3>
+        <Calendar
+          localizer={localizer}
+          events={monthEvents}
+          startAccessor="start"
+          endAccessor="end"
+          defaultView="month"
+          views={["month"]}
+          onSelectEvent={(event) => alert(`Event: ${event.title}\nStart: ${event.start}\nEnd: ${event.end}`)}
+          style={{ height: "300px" }}
+        />
+      </div>
+    );
+  };
+
   if (loading) {
     return <div>Loading calendar events...</div>;
   }
@@ -51,24 +76,17 @@ function App() {
   }
 
   return (
-    <div style={{ height: "100vh", padding: "20px" }}>
-      <h1>My Calendar Events - {currentYear}</h1>
+    <div style={{ padding: "20px" }}>
+      <h1>Full Year Calendar - {currentYear}</h1>
       <div style={{ marginBottom: "20px" }}>
         <button onClick={() => handleYearChange(currentYear - 1)}>Previous Year</button>
         <button onClick={() => handleYearChange(currentYear + 1)} style={{ marginLeft: "10px" }}>
           Next Year
         </button>
       </div>
-      <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        onSelectEvent={(event) => alert(`Event: ${event.title}\nStart: ${event.start}\nEnd: ${event.end}`)}
-        style={{ height: "80vh" }}
-        defaultView="month"
-        views={["month", "agenda"]}
-      />
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
+        {Array.from({ length: 12 }, (_, i) => renderMonthCalendar(i))}
+      </div>
     </div>
   );
 }
