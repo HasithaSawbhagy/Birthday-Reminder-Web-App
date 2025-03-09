@@ -1,41 +1,45 @@
 .event-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.event-modal-content {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  padding: 20px;
-  max-width: 500px;
-  width: 100%;
-  color: white;
-}
-
-.event-modal-content h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-.event-modal-content button {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  color: white;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.event-modal-content button:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .event-modal-content {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    color: #ffffff; /* White text */
+  }
+  
+  .event-modal-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .event-modal-content p {
+    margin: 10px 0;
+  }
+  
+  .event-modal-content button {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #ffffff; /* White text */
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .event-modal-content button:hover {
+    background: rgba(255, 255, 255, 0.2); /* Brighter on hover */
+  }

@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom right, #f4f4f4, #8e2de2);
-  color: white;
+  background: #121212; /* Dark background */
+  color: #ffffff; /* White text */
 }
 
 .app {
@@ -15,4 +15,5 @@ body {
   align-items: center;
   height: 100vh;
   font-size: 1.5rem;
+  color: #ffffff;
 }
