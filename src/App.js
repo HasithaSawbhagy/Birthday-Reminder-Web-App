@@ -18,12 +18,14 @@ function App() {
       setError(null);
       try {
         const response = await axios.get(`/.netlify/functions/calendar?year=${currentYear}`);
-        const formattedEvents = response.data.map((event) => ({
-          title: event.summary,
-          start: new Date(event.start),
-          end: new Date(event.end),
-          allDay: !event.start.dateTime, // Check if it's an all-day event
-        }));
+        const formattedEvents = response.data
+          .filter((event) => event.summary) // Filter out events without a summary
+          .map((event) => ({
+            title: event.summary || "No Title", // Fallback for missing titles
+            start: new Date(event.start),
+            end: new Date(event.end),
+            allDay: !event.start.dateTime, // Check if it's an all-day event
+          }));
         setEvents(formattedEvents);
       } catch (err) {
         setError(err);
@@ -64,7 +66,7 @@ function App() {
         endAccessor="end"
         onSelectEvent={(event) => alert(`Event: ${event.title}\nStart: ${event.start}\nEnd: ${event.end}`)}
         style={{ height: "80vh" }}
-        defaultView="year"
+        defaultView="month"
         views={["month", "agenda"]}
       />
     </div>

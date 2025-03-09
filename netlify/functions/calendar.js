@@ -32,7 +32,7 @@ async function getCalendarEvents(year) {
       return [];
     }
     return events.map((event) => ({
-      summary: event.summary,
+      summary: event.summary || "No Title", // Fallback for missing summaries
       start: event.start ? event.start.dateTime || event.start.date : null,
       end: event.end ? event.end.dateTime || event.end.date : null,
     }));
