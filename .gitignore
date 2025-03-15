@@ -25,4 +25,3 @@ yarn-error.log*
 # Local Netlify folder
 .netlify
 netlify/functions/credentials.json
-.env
