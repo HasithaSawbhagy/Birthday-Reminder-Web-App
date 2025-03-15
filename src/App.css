@@ -1,30 +1,19 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #121212; /* Dark background */
+  color: #ffffff; /* White text */
+}
+
 .app {
-  text-align: center;
   padding: 20px;
 }
 
 .loading, .error {
-  margin-top: 20px;
-  font-size: 1.2em;
-}
-
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.month-calendar {
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-}
-
-.navigation {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: #ffffff;
 }
