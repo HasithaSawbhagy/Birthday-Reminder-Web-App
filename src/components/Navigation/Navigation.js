@@ -1,12 +1,13 @@
 import React from "react";
+import { Button, Typography } from "@mui/material";
 import "./Navigation.css";
 
 const Navigation = ({ currentYear, handleYearChange }) => {
   return (
     <div className="navigation">
-      <button onClick={() => handleYearChange(currentYear - 1)}>Previous Year</button>
-      <h1>Full Year Calendar - {currentYear}</h1>
-      <button onClick={() => handleYearChange(currentYear + 1)}>Next Year</button>
+      <Button variant="contained" onClick={() => handleYearChange(currentYear - 1)}>Previous Year</Button>
+      <Typography variant="h4">Full Year Calendar - {currentYear}</Typography>
+      <Button variant="contained" onClick={() => handleYearChange(currentYear + 1)}>Next Year</Button>
     </div>
   );
 };

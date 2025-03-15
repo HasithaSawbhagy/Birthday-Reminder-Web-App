@@ -1,18 +1,9 @@
-.calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  @media (max-width: 1200px) {
-    .calendar-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .calendar-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+.month-calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.month-calendar h3 {
+  margin-bottom: 10px;
+}

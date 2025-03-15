@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CalendarGrid from "./components/CalendarGrid/CalendarGrid";
 import Navigation from "./components/Navigation/Navigation";
+import { Fade } from "@mui/material";
 import "./App.css";
 
 function App() {
@@ -49,10 +50,12 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <Navigation currentYear={currentYear} handleYearChange={handleYearChange} />
-      <CalendarGrid events={events} currentYear={currentYear} />
-    </div>
+    <Fade in={true} timeout={1000}>
+      <div className="app">
+        <Navigation currentYear={currentYear} handleYearChange={handleYearChange} />
+        <CalendarGrid events={events} currentYear={currentYear} />
+      </div>
+    </Fade>
   );
 }
 

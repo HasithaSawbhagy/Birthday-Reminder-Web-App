@@ -1,27 +1,8 @@
 .navigation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .navigation button {
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
-    backdrop-filter: blur(10px);
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    color: #ffffff; /* White text */
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .navigation button:hover {
-    background: rgba(255, 255, 255, 0.2); /* Brighter on hover */
-  }
-  
-  .navigation h1 {
-    font-size: 2rem;
-    color: #ffffff; /* White text */
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
